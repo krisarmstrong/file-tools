@@ -10,7 +10,7 @@ from PyQt6.QtCore import Qt
 class SortSentinel(QWidget):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("SortSentinel 🛡️ - AI File Organizer")
+        self.setWindowTitle("SortSentinel 🛡️ - File Organizer")
         self.setGeometry(100, 100, 800, 600)
         self.set_dark_theme()
         layout = QVBoxLayout()

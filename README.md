@@ -3,8 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white) ![Tests](https://img.shields.io/badge/Tests-pytest-passing) ![Status](https://img.shields.io/badge/Status-Active-success)
 
 
-Successor to `file_organizer`, `file_sorter`, `game_file_renamer`, `sort-sentinel`, and the CLI portion of
-`local_llm_file_organizer`. Everything now lives under a single binary with both CLI and GUI support:
+Successor to `file_organizer`, `file_sorter`, `game_file_renamer`, and `sort-sentinel`. Everything now lives under a single binary with both CLI and GUI support:
 
 ```bash
 pip install .
@@ -29,16 +28,8 @@ in `game_file_renamer`.
 file-tools rename ./roms metadata/games.csv --template "{name} - {platform}{ext}"
 ```
 
-### `file-tools llm`
-Send file manifests to an LLM (OpenAI Responses API by default) to brainstorm folder plans.
-Install the optional extras (`pip install .[llm]`) and run:
-
-```bash
-file-tools llm ./research --model gpt-4o-mini
-```
-
 ### `file-tools gui`
-Launch the PyQt6 GUI for visual file organization and renaming with AI-powered suggestions.
+Launch the PyQt6 GUI for visual file organization and renaming with smart suggestions.
 
 ```bash
 file-tools gui

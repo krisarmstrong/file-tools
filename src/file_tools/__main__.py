@@ -7,7 +7,7 @@ import logging
 import sys
 from pathlib import Path
 
-from . import organizer, renamer, llm, undo
+from . import organizer, renamer, classifier, undo
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -31,9 +31,9 @@ def build_parser() -> argparse.ArgumentParser:
     rename_parser.add_argument("--template", default="{name} ({year}){ext}")
     rename_parser.add_argument("--preview", action="store_true")
 
-    llm_parser = subparsers.add_parser("llm", help="Classify files with an LLM to plan folders.")
-    llm_parser.add_argument("directory", type=Path)
-    llm_parser.add_argument("--model", default="gpt-4o-mini")
+    classify_parser = subparsers.add_parser("classify", help="Classify files to plan folders.")
+    classify_parser.add_argument("directory", type=Path)
+    classify_parser.add_argument("--model", default="gpt-4o-mini")
 
     gui_parser = subparsers.add_parser("gui", help="Launch PyQt6 GUI for file organization.")
 
@@ -66,13 +66,13 @@ def main() -> int:
             template=args.template,
             preview=args.preview,
         )
-    elif args.command == "llm":
+    elif args.command == "classify":
         files = [
             {"name": entry.name, "size": entry.stat().st_size}
             for entry in args.directory.iterdir()
             if entry.is_file()
         ]
-        result = llm.classify_with_llm(files, model=args.model)
+        result = classifier.classify_files(files, model=args.model)
         for row in result:
             print(f"{row['category']:>12} : {row['name']}")
     elif args.command == "gui":

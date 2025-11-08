@@ -1,4 +1,4 @@
-"""Lightweight LLM-assisted classification facade."""
+"""Lightweight file classification module."""
 
 from __future__ import annotations
 
@@ -17,9 +17,9 @@ PROMPT = """You are a file librarian. For each file entry (name + snippet), assi
 Respond with compact JSON: [{"name": "file.ext", "category": "ebooks"}, ...]."""
 
 
-def classify_with_llm(files: Iterable[dict], *, model: str = "gpt-4o-mini") -> list[dict]:
+def classify_files(files: Iterable[dict], *, model: str = "gpt-4o-mini") -> list[dict]:
     if OpenAI is None:  # pragma: no cover
-        raise RuntimeError("Install file-tools[llm] to enable LLM classification.")
+        raise RuntimeError("Install required dependencies (openai, httpx) to enable file classification.")
 
     client = OpenAI()
     payload = json.dumps(list(files))
