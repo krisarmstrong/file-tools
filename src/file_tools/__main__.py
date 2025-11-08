@@ -7,7 +7,7 @@ import logging
 import sys
 from pathlib import Path
 
-from . import organizer, renamer, llm
+from . import organizer, renamer, llm, undo
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -34,6 +34,12 @@ def build_parser() -> argparse.ArgumentParser:
     llm_parser = subparsers.add_parser("llm", help="Classify files with an LLM to plan folders.")
     llm_parser.add_argument("directory", type=Path)
     llm_parser.add_argument("--model", default="gpt-4o-mini")
+
+    gui_parser = subparsers.add_parser("gui", help="Launch PyQt6 GUI for file organization.")
+
+    undo_parser = subparsers.add_parser("undo", help="Revert file operations from CSV log.")
+    undo_parser.add_argument("log_file", type=Path, help="Path to rename_log.csv")
+    undo_parser.add_argument("--apply", action="store_true", help="Actually perform undo (default is dry-run)")
 
     return parser
 
@@ -69,6 +75,15 @@ def main() -> int:
         result = llm.classify_with_llm(files, model=args.model)
         for row in result:
             print(f"{row['category']:>12} : {row['name']}")
+    elif args.command == "gui":
+        try:
+            from ..gui import file_tools_gui
+            file_tools_gui.run_gui()
+        except ImportError as e:
+            print(f"GUI requires PyQt6. Install with: pip install PyQt6")
+            return 1
+    elif args.command == "undo":
+        undo.revert_changes(log_path=str(args.log_file), dry_run=not args.apply)
     else:
         parser.error("Unknown command")
     return 0

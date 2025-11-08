@@ -3,8 +3,8 @@
 ![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python&logoColor=white) ![Tests](https://img.shields.io/badge/Tests-pytest-passing) ![Status](https://img.shields.io/badge/Status-Active-success)
 
 
-Successor to `file_organizer`, `file_sorter`, `game_file_renamer`, and the CLI portion of
-`local_llm_file_organizer`. Everything now lives under a single binary:
+Successor to `file_organizer`, `file_sorter`, `game_file_renamer`, `sort-sentinel`, and the CLI portion of
+`local_llm_file_organizer`. Everything now lives under a single binary with both CLI and GUI support:
 
 ```bash
 pip install .
@@ -35,6 +35,20 @@ Install the optional extras (`pip install .[llm]`) and run:
 
 ```bash
 file-tools llm ./research --model gpt-4o-mini
+```
+
+### `file-tools gui`
+Launch the PyQt6 GUI for visual file organization and renaming with AI-powered suggestions.
+
+```bash
+file-tools gui
+```
+
+### `file-tools undo`
+Revert file operations using the CSV log file created during organize or rename operations.
+
+```bash
+file-tools undo rename_log.csv [--apply]
 ```
 
 ## Development
