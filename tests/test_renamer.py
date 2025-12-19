@@ -1,5 +1,3 @@
-from pathlib import Path
-
 from file_tools import renamer
 
 

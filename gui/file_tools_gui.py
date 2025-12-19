@@ -1,11 +1,19 @@
-
-import sys, os
+import sys
+import os
 from PyQt6.QtWidgets import (
-    QApplication, QWidget, QFileDialog, QVBoxLayout, QLabel, QPushButton,
-    QTableWidget, QTableWidgetItem, QHeaderView, QCheckBox, QHBoxLayout, QMessageBox
+    QApplication,
+    QWidget,
+    QFileDialog,
+    QVBoxLayout,
+    QLabel,
+    QPushButton,
+    QTableWidget,
+    QTableWidgetItem,
+    QHeaderView,
+    QMessageBox,
 )
 from PyQt6.QtGui import QPalette, QColor
-from PyQt6.QtCore import Qt
+
 
 class SortSentinel(QWidget):
     def __init__(self):
@@ -74,6 +82,7 @@ class SortSentinel(QWidget):
         palette.setColor(QPalette.ColorRole.Highlight, QColor("#007acc"))
         palette.setColor(QPalette.ColorRole.HighlightedText, QColor("#ffffff"))
         self.setPalette(palette)
+
 
 def run_gui():
     app = QApplication(sys.argv)

@@ -3,8 +3,6 @@
 from __future__ import annotations
 
 import json
-import logging
-from pathlib import Path
 from typing import Iterable
 
 try:  # pragma: no cover - optional
@@ -19,7 +17,9 @@ Respond with compact JSON: [{"name": "file.ext", "category": "ebooks"}, ...]."""
 
 def classify_files(files: Iterable[dict], *, model: str = "gpt-4o-mini") -> list[dict]:
     if OpenAI is None:  # pragma: no cover
-        raise RuntimeError("Install required dependencies (openai, httpx) to enable file classification.")
+        raise RuntimeError(
+            "Install required dependencies (openai, httpx) to enable file classification."
+        )
 
     client = OpenAI()
     payload = json.dumps(list(files))

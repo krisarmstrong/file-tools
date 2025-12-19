@@ -21,11 +21,15 @@ def build_parser() -> argparse.ArgumentParser:
     organize_parser.add_argument("source", type=Path, help="Directory to process.")
     organize_parser.add_argument("target", type=Path, help="Destination root.")
     organize_parser.add_argument("--mode", choices=["mime", "extension"], default="mime")
-    organize_parser.add_argument("--rename-mode", choices=["date-prefix", "none"], default="date-prefix")
+    organize_parser.add_argument(
+        "--rename-mode", choices=["date-prefix", "none"], default="date-prefix"
+    )
     organize_parser.add_argument("--dry-run", action="store_true")
     organize_parser.add_argument("--csv-log", type=Path)
 
-    rename_parser = subparsers.add_parser("rename", help="Rename using metadata (games, ROMs, etc.)")
+    rename_parser = subparsers.add_parser(
+        "rename", help="Rename using metadata (games, ROMs, etc.)"
+    )
     rename_parser.add_argument("directory", type=Path)
     rename_parser.add_argument("metadata", type=Path)
     rename_parser.add_argument("--template", default="{name} ({year}){ext}")
@@ -35,11 +39,13 @@ def build_parser() -> argparse.ArgumentParser:
     classify_parser.add_argument("directory", type=Path)
     classify_parser.add_argument("--model", default="gpt-4o-mini")
 
-    gui_parser = subparsers.add_parser("gui", help="Launch PyQt6 GUI for file organization.")
+    subparsers.add_parser("gui", help="Launch PyQt6 GUI for file organization.")
 
     undo_parser = subparsers.add_parser("undo", help="Revert file operations from CSV log.")
     undo_parser.add_argument("log_file", type=Path, help="Path to rename_log.csv")
-    undo_parser.add_argument("--apply", action="store_true", help="Actually perform undo (default is dry-run)")
+    undo_parser.add_argument(
+        "--apply", action="store_true", help="Actually perform undo (default is dry-run)"
+    )
 
     return parser
 
@@ -78,9 +84,10 @@ def main() -> int:
     elif args.command == "gui":
         try:
             from ..gui import file_tools_gui
+
             file_tools_gui.run_gui()
-        except ImportError as e:
-            print(f"GUI requires PyQt6. Install with: pip install PyQt6")
+        except ImportError:
+            print("GUI requires PyQt6. Install with: pip install PyQt6")
             return 1
     elif args.command == "undo":
         undo.revert_changes(log_path=str(args.log_file), dry_run=not args.apply)
@@ -94,7 +101,9 @@ def setup_logging(verbose: bool, logfile: Path | None) -> None:
     handlers = [logging.StreamHandler(sys.stdout)]
     if logfile:
         handlers.append(logging.FileHandler(logfile))
-    logging.basicConfig(level=level, handlers=handlers, format="%(asctime)s [%(levelname)s] %(message)s")
+    logging.basicConfig(
+        level=level, handlers=handlers, format="%(asctime)s [%(levelname)s] %(message)s"
+    )
 
 
 if __name__ == "__main__":

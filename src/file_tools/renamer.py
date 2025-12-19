@@ -6,7 +6,6 @@ import csv
 import json
 import logging
 from pathlib import Path
-from typing import Iterable, List, Mapping, Optional
 
 
 def load_metadata(path: Path) -> list[dict]:

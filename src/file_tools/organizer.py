@@ -5,13 +5,12 @@ from __future__ import annotations
 import csv
 import logging
 import mimetypes
-import os
 import re
 import shutil
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Iterable, Iterator, Optional
+from typing import Iterator, Optional
 
 try:  # pragma: no cover
     import magic  # type: ignore
@@ -46,7 +45,10 @@ EXTENSION_FOLDERS = {
 }
 
 GARBAGE_EXTS = {".ics"}
-GARBAGE_PATTERNS = [re.compile(r"^outlook-.*(?<!\\.pdf)$"), re.compile(r"^image\\d+\\.(png|jpg|gif|jfif)$")]
+GARBAGE_PATTERNS = [
+    re.compile(r"^outlook-.*(?<!\\.pdf)$"),
+    re.compile(r"^image\\d+\\.(png|jpg|gif|jfif)$"),
+]
 
 
 @dataclass
