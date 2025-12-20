@@ -58,5 +58,5 @@ pip install -e .[test]
 python -m pytest
 ```
 
-CI runs `nox -s tests` (see `.github/workflows/ci.yml`). Versions are derived from git tags via
-`setuptools_scm` – tag releases as `vX.Y.Z`.
+CI runs `nox -s tests` (see `.github/workflows/ci.yml`). Versions are stored in `pyproject.toml` and
+release-please manages tags and changelog entries.
