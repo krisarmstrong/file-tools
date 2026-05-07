@@ -1,9 +1,28 @@
-# Python
+# ╔═══════════════════════════════════════════════════════════════════════════╗
+# ║ File Tools - .gitignore                                                   ║
+# ╠═══════════════════════════════════════════════════════════════════════════╣
+# ║ Unified CLI for file organization and bulk renaming                       ║
+# ║ Stack: Python 3.x, CLI utilities                                          ║
+# ╚═══════════════════════════════════════════════════════════════════════════╝
+
+# ─── Python Core ─────────────────────────────────────────────────────────────
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
+
+# ─── Virtual Environments ────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
 .Python
+
+# ─── Distribution & Packaging ────────────────────────────────────────────────
 build/
 develop-eggs/
 dist/
@@ -19,41 +38,49 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
+*.whl
 
-# Virtual environments
-venv/
-env/
-ENV/
-.venv/
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-
-# Testing
+# ─── Testing & Coverage ──────────────────────────────────────────────────────
 .pytest_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
 .tox/
 .nox/
+.hypothesis/
 
-# Distribution
-*.whl
-
-# Logs
-*.log
-
-# Local files
-*.local
-.env
-.env.local
-
-# Tooling defaults
-.env.*
+# ─── Type Checking & Linting ─────────────────────────────────────────────────
 .mypy_cache/
 .ruff_cache/
-coverage.xml
+.dmypy.json
+dmypy.json
+.pytype/
+
+# ─── Environment & Secrets ───────────────────────────────────────────────────
+.env
+.env.*
+.env.local
+*.local
+
+# ─── Application-Specific ────────────────────────────────────────────────────
+# Test/sample files used during development
+test_files/
+sample_data/
+*.test/
+
+# Operation logs and reports
+reports/
+operation_*.txt
+
+# ─── Logs ────────────────────────────────────────────────────────────────────
+*.log
+
+# ─── Temporary Files ─────────────────────────────────────────────────────────
+*.tmp
+*.temp
+*~
+*.swp
+*.swo
+.tmp_*
