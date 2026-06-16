@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from typing import Iterable
+from collections.abc import Iterable
 
 try:  # pragma: no cover - optional
     from openai import OpenAI
@@ -11,7 +11,8 @@ except ImportError:  # pragma: no cover
     OpenAI = None  # type: ignore
 
 
-PROMPT = """You are a file librarian. For each file entry (name + snippet), assign a concise category slug.
+PROMPT = """You are a file librarian.
+For each file entry (name + snippet), assign a concise category slug.
 Respond with compact JSON: [{"name": "file.ext", "category": "ebooks"}, ...]."""
 
 

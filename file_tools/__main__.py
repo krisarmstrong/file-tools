@@ -7,7 +7,7 @@ import logging
 import sys
 from pathlib import Path
 
-from . import organizer, renamer, classifier, undo
+from . import classifier, organizer, renamer, undo
 
 
 def build_parser() -> argparse.ArgumentParser:

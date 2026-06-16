@@ -1,18 +1,19 @@
-import sys
 import os
+import sys
+
+from PyQt6.QtGui import QColor, QPalette
 from PyQt6.QtWidgets import (
     QApplication,
-    QWidget,
     QFileDialog,
-    QVBoxLayout,
+    QHeaderView,
     QLabel,
+    QMessageBox,
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
-    QHeaderView,
-    QMessageBox,
+    QVBoxLayout,
+    QWidget,
 )
-from PyQt6.QtGui import QPalette, QColor
 
 
 class SortSentinel(QWidget):

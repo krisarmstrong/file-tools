@@ -9,4 +9,4 @@ try:  # pragma: no cover
 except ImportError:  # pragma: no cover
     __version__ = "0.0.0"
 
-__all__ = ["organizer", "renamer", "__version__"]
+__all__ = ["__version__", "organizer", "renamer"]
