@@ -1,6 +1,6 @@
 [project]
 name = "file-tools"
-version = "1.0.3"
+version = "1.0.4"
 description = "Unified CLI for file organization and bulk renaming."
 authors = [
     { name = "Kris Armstrong", email = "kris.armstrong@me.com" }
