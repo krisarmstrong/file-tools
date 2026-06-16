@@ -7,10 +7,10 @@ import logging
 import mimetypes
 import re
 import shutil
+from collections.abc import Iterator
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
-from typing import Iterator, Optional
 
 try:  # pragma: no cover
     import magic  # type: ignore
@@ -58,7 +58,7 @@ class OrganizerOptions:
     mode: str = "mime"
     rename_mode: str = "date-prefix"
     dry_run: bool = False
-    csv_log: Optional[Path] = None
+    csv_log: Path | None = None
 
 
 class FileOrganizer:
@@ -96,7 +96,7 @@ class FileOrganizer:
             final_path = self._dedupe(final_path)
         self._move(file_path, final_path)
 
-    def _resolve_destination(self, file_path: Path) -> Optional[tuple[Path, Optional[str]]]:
+    def _resolve_destination(self, file_path: Path) -> tuple[Path, str | None] | None:
         if self.options.mode == "extension":
             ext = file_path.suffix.lower() or "No_Extension"
             folder = EXTENSION_FOLDERS.get(ext, ext.strip("."))
@@ -127,7 +127,7 @@ class FileOrganizer:
             folder = DEFAULT_FOLDERS.get(mime, "Others")
         return self.target / folder, self._rename(file_path)
 
-    def _rename(self, file_path: Path) -> Optional[str]:
+    def _rename(self, file_path: Path) -> str | None:
         if self.options.rename_mode == "none":
             return None
         prefix = datetime.fromtimestamp(file_path.stat().st_mtime).strftime("%Y-%m")
