@@ -40,7 +40,7 @@ Homepage = "https://github.com/krisarmstrong/file-tools"
 file-tools = "file_tools.__main__:main"
 
 [build-system]
-requires = ["setuptools>=68", "wheel"]
+requires = ["setuptools>=82.0.1", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools.packages.find]
