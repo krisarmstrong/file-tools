@@ -16,7 +16,7 @@ classifiers = [
     "Topic :: Desktop Environment :: File Managers",
 ]
 dependencies = [
-    "rich>=13.7",
+    "rich>=15.0.0",
     "python-magic>=0.4",
     "Pillow>=10.2",
     "keyring>=25.0",
