@@ -18,7 +18,7 @@ classifiers = [
 dependencies = [
     "rich>=15.0.0",
     "python-magic>=0.4.27",
-    "Pillow>=10.2",
+    "Pillow>=13.0.0",
     "keyring>=25.0",
 ]
 
